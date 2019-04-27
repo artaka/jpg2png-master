@@ -1,4 +1,4 @@
-import os, tempfile
+import os
 from PIL import Image
 inpng = './inpng/'
 pngs = './pngs/' 
@@ -22,10 +22,11 @@ elif mode == "2": #Png2jpg
         if file:
             jpgsname = file + ".jpg"
             print(file)
-            imagejpg = Image.open(injpg + file)
+            imagepng = Image.open(injpg + file)
             os.chdir(jpgs)
-            imagejpg.save(jpgsname)
-        print("Всё сохранилось в " + jpgs)
+            rgb_imagepng = imagepng.convert('RGB')
+            rgb_imagepng.save(jpgsname)
+            print("Всё сохранилось в " + jpgs)
         if not file: #Если нет, ошибка
             print("В папке injpg не обнаружено файлов!")
             print(file)
